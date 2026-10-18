@@ -27,8 +27,8 @@ const quoteText = document.querySelector('.quote-text');
 const quoteImg = document.querySelector('.quote-author img');
 const quoteAuthor = document.querySelector('.quote-personal-info');
 
-btns.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
+btns.forEach(function(btn, index) {
+        btn.addEventListener('click', function() {
             
             if (btn.classList.contains('active')) return;
 

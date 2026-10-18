@@ -5,7 +5,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Work Sans", sans-serif;
-    /*border: 1px solid red;*/
 
     button {
         cursor: pointer;
@@ -111,7 +110,7 @@ header {
     h1 {
         color: var(--text);
         font-size: var(--heading1);
-        font-weight: 500;
+        font-weight: 400;
         letter-spacing: -8%;
     }
 
@@ -549,16 +548,60 @@ header {
 
 footer {
     display: grid;
+    grid-template-areas: 
+        "logo buttons"
+        "description copyright";
     grid-template-columns: repeat(2, 1fr);
+
     background-color: var(--background3);
     padding: 32px 40px;
     min-height: 236px;
 
-    .footer-left-column {
+    .logo {
+        grid-area: logo;
+
+        img {
+            width: 174px;
+            height: 20px;
+        }
+    }
+
+    .buttons {
+        grid-area: buttons;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 1;
+        align-items: center;
+        align-self: flex-start;
+        justify-content: flex-start;
+        gap: 11px;
+
+        a {
+            text-decoration: none;
+            color: var(--textOnAccent4);
+            font-size: var(--label1);
+            letter-spacing: -4.5%;
+            font-weight: 500;
+        }
+
+        button {
+            color: var(--text);
+            font-size: var(--label1);
+            letter-spacing: -4.5%;
+            font-weight: 500;
+            padding: 12px;
+            transition: 300ms ease-in;
+            background-color: var(--background4);
+            border-radius: 51.57px;
+            border: none;
+
+            &:hover {
+                background-color: var(--background1);
+            }
+        }
+    }
+
+    .description {
+        grid-area: description;
+        align-self: end;
 
         p {
             font-size: var(--label1);
@@ -574,50 +617,12 @@ footer {
         p:last-of-type {
             color: var(--textOnAccent4);
         }
-
-        img {
-            width: 174px;
-            height: 20px;
-        }
     }
 
-    .footer-right-column {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: stretch;
-        flex: 1;
-
-        div {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 11px;
-
-            a {
-                text-decoration: none;
-                color: var(--textOnAccent4);
-                font-size: var(--label1);
-                letter-spacing: -4.5%;
-                font-weight: 500;
-            }
-
-            button {
-                color: var(--text);
-                font-size: var(--label1);
-                letter-spacing: -4.5%;
-                font-weight: 500;
-                padding: 12px;
-                transition: 300ms ease-in;
-                background-color: var(--background4);
-                border-radius: 51.57px;
-                border: none;
-
-                &:hover {
-                    background-color: var(--background1);
-                }
-            }
-        }
+    .copyright {
+        grid-area: copyright;
+        justify-self: flex-start;
+        align-self: end;
 
         p {
             color: var(--textOnAccent4);
@@ -632,6 +637,22 @@ footer {
 
 /* -- TABLET -- */
 @media (max-width: 1279px) {
+
+    :root {
+    
+    /* -- FONT SIZES - TABLET -- */
+
+    --heading1: 58px;
+    --heading2: 48px;
+    --heading3: 34px;
+    --heading4: 26px;
+    --heading5: 18px;
+    --heading6: 12px;
+    --quote: 24px;
+    --paragraph: 16px;
+    --label1: 12px;
+
+    }
 
     header {
         padding: 0px 24px;
@@ -648,7 +669,7 @@ footer {
 
     .service-card {
         gap: 60px;
-        max-width: 752px;
+        align-items: center;
 
         .btn {
             white-space: nowrap;
@@ -687,10 +708,8 @@ footer {
     footer {
         column-gap: 80px;
 
-        .footer-right-column {
-            div {
-                justify-content: space-between;
-            }
+        .buttons {
+            justify-content: space-between;
         }
     }
 }
@@ -698,6 +717,24 @@ footer {
 /* --- PHONE --- */
 
 @media (max-width: 799px) {
+
+    :root {
+
+    /* -- FONT SIZES - PHONE -- */
+
+    --heading1: 40px;
+    --heading2: 32px;
+    --heading3: 28px;
+    --heading4: 22px;
+    --heading5: 18px;
+    --heading6: 12px;
+    --quote: 18px;
+    --paragraph: 16px;
+    --label1: 12px;
+
+
+    }
+
     header {
         padding: 0px 16px;
 
@@ -742,21 +779,41 @@ footer {
     }
 
     .right {
-        img {
+        picture {
             order: -1;
         }
     }
 
     .testimonal-section{
+
+        padding: 24px 16px;
+        margin: 36px;
+
         .quotes-block {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             grid-template-rows: auto;
             gap: 0;
+            place-items: center;
 
             .btn-list {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
                 grid-template-rows: auto;
                 gap: 0;
+                align-items: flex-start;
+
+                .quote-btn {
+
+                    padding: 16px 12px;
+                    word-wrap: break-word;
+
+                    p:first-of-type {
+                        font-size: clamp(6px, var(--label1), var(--label1));
+                    }
+
+                    p:last-of-type {
+                        color: var(--textOnAccent3);
+                    }
+                }
             }
 
             .quote {
@@ -768,6 +825,7 @@ footer {
     }
 
     .benefits-section {
+
         .header {
             flex-direction: column;
 
@@ -779,28 +837,49 @@ footer {
         .three-column {
             margin-top: 80px;
             margin-bottom: 80px;
+            max-width: 300px;
         }
     }
 
     .cta-section {
         grid-template-columns: auto;
-        grid-template-rows: repeat(2, 1fr);
-        margin-top: 50px;
-        margin-bottom: 50px;
+        grid-template-rows: auto;
+        gap: 20px;
 
         section:last-child {
             order: -1;
+            max-height: 230px;
+            margin-top: 50px;
         }
-        
+    }
+
+    .experts-section {
+        button {
+            padding: 24px 30px;
+        }
     }
     
     footer {
-        .footer-left-column {
-            
+        grid-template-areas: 
+        "logo"
+        "buttons"
+        "description"
+        "copyright";
+
+        padding: 32px 24px;
+        grid-template-columns: 1fr;
+
+        .logo, .buttons {
+            margin-bottom: 80px;
         }
 
-        .footer-right-column {
-
+        .description {
+            margin-bottom: 24px;
         }
+
+        .buttons button {
+            padding: 12px 22.25px;
+        }
+
     }
 }
